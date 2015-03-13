@@ -25,21 +25,23 @@ public class Ball extends Entity {
             pitch = NormalizePitch() * 100;
             roll = NormalizeRoll() * 100;
 
+            int buffer = 20;
+
             if (position.x <= 0) {
-                position.x = 0;
+                position.x = buffer;
                 Gdx.input.vibrate(vibrateAmount);
             }
 
             if (position.x >= Gdx.graphics.getWidth() - TextureManager.BALL.getWidth()) {
-                position.x = Gdx.graphics.getWidth() - TextureManager.BALL.getWidth();
+                position.x = Gdx.graphics.getWidth() - TextureManager.BALL.getWidth() - buffer;
                 Gdx.input.vibrate(vibrateAmount);
             }
             if (position.y <= 0) {
-                position.y = 0;
+                position.y = buffer;
                 Gdx.input.vibrate(vibrateAmount);
             }
             if (position.y >= Gdx.graphics.getHeight() - TextureManager.BALL.getHeight()) {
-                position.y = Gdx.graphics.getHeight() - TextureManager.BALL.getHeight();
+                position.y = Gdx.graphics.getHeight() - TextureManager.BALL.getHeight() - buffer;
                 Gdx.input.vibrate(vibrateAmount);
             }
 
@@ -57,7 +59,7 @@ public class Ball extends Entity {
     }
 
     private float NormalizeRoll(){
-        float r = -Gdx.input.getRoll();
+        float r = Gdx.input.getRoll();
         if(Math.abs(r) < 1){
             return 0.f;
         }
